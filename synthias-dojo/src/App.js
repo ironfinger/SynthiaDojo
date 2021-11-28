@@ -3,16 +3,17 @@ import './App.css';
 
 // Import react and react Router;
 import { React, Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // Bootstrap components:
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';  
 import Navbar from 'react-bootstrap/NavBar';
-import Switch from 'react-bootstrap/esm/Switch';
 
 // Import my components:
 import Library from './Views/Library';
+import Stats from './Views/Stats';
+
 
 class App extends Component {
   render() {
@@ -20,15 +21,19 @@ class App extends Component {
     let nav = <Navigation />;
     
     return (
-    <div>
-      {
-        nav
-      }
-      <Library />
-    </ div>
+      <Router>
+        {
+          nav // The navigation Bar
+        }
+        <Routes>
+          <Route exact path='/' element={<Library />} />
+          <Route path='/stats' element={<Stats />} />
+        </Routes>
+      </Router>
     )
   }
 }
+
 
 const Navigation = () => {
   return (
@@ -48,7 +53,7 @@ const Navigation = () => {
           <Nav.Link>Library</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>Stats</Nav.Link>
+          <Nav.Link><Link style={{ textDecoration: 'none', color:'white' }} to='/stats'>Stats</Link></Nav.Link>
         </Nav.Item>
       </Nav>
       </Container>
