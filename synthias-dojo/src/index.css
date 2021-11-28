@@ -39,3 +39,8 @@ code {
   height: 40vh;
   background-color: #546164;
 }
+
+.chartCont {
+  width: 20em;
+  height: 20em;
+}
