@@ -5,12 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/esm/Container';
 
+import PresetValue from '../Components/PresetValue';
+
 class Library extends Component {
 
     constructor(props) {
         super (props);
 
-        this.state = { AdvFiles: ['none'], presets: ['none'] };
+        this.state = { AdvFiles: ['none'], presets: ['none'], currentPreset: 0 };
 
 
     }
@@ -18,36 +20,43 @@ class Library extends Component {
     componentDidMount() {
         fetch('/api/get-presets').then(res => res.json()).then(data => {
             console.log(data);
-            this.setState({presets: data});
+            this.setState({presets: data.presets});
         })
     }
 
+    listClick(arg) {
+        this.setState(state => ({
+            currentPreset: arg
+        }));
+    }
+
     render() {
+        console.log(this.state.presets[0]);
         return (
            <div class="main">
                <div class="top">
                     <Container>
                         <Row>
                             <Col>
-                                <ul>
-                                    <li>Preset 01</li>
-                                    <li>Preset 02</li>
-                                    <li>Preset 03</li>
-                                    <li>Preset 04</li>
-                                    <li>Preset 05</li>
-                                    <li>Preset 06</li>
-                                </ul>
+                                <div className="top-left">
+                                    <ul>
+                                        {
+                                            this.state.presets.map((x, i) => {
+                                                return <li className="preset-selector" onClick={() => { this.listClick(i)}}>{x.name}</li>
+                                            })
+                                        }
+                                    </ul>
+                                </div>
                             </Col>
                             <Col>
-                                <ul>
-                                    <li>Attibute 01</li>
-                                    <li>Attibute 02</li>
-                                    <li>Attibute 03</li>
-                                    <li>Attibute 04</li>
-                                    <li>Attibute 05</li>
-                                    <li>Attibute 06</li>
-                                    <li>Attibute 07</li>
-                                </ul>
+                                <Row>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Volume'   
+                                            value={this.state.presets[this.state.currentPreset].volume}
+                                        />
+                                    </Col>
+                                </Row>
                             </Col>
                         </Row>
                     </Container>

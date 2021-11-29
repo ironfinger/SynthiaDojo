@@ -12,59 +12,26 @@ class Stats extends Component {
     constructor (props) {
         super (props);
 
-        this.state = {
-            Presets: {
-                data: [{x: 'current', y: 400}, {x: 'total', y: 500}]
-            }
-        }
+        this.state = { statistics: [{ title: 'no data', amount: 11, target: 1000}] };
+    }
+
+    componentDidMount() {
+        fetch('/api/stats').then(res => res.json()).then(data => {
+            console.log(data);
+            this.setState({statistics: data});
+        });
     }
 
     render() {
+        
         return(
             <Container className='chartContainer'>
                 <Row>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
-                    <Col xs={4}>
-                        <Chart presets={this.state.Presets.data} />
-                    </Col>
+                    {
+                        this.state.statistics.map((stat) => {
+                            return (<Col xs={4}><Chart stats={stat} /></Col>)
+                        })
+                    }
                 </Row>
                 <Row>
                     <Col xs={4}></Col>

@@ -33,6 +33,11 @@ code {
   background-color: #99C1D3;
 }
 
+.top-left {
+  height: 58vh;
+  overflow-y: scroll;
+}
+
 .bottom {
   width: 100%;
   height: 40vh;
@@ -68,4 +73,29 @@ code {
 .chartContainer {
   height: 90vh;
   overflow-y: scroll;
+}
+
+.preset-selector {
+  transition: 1s;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.preset-selector:hover {
+  background-color: #2E434A;
+  
+  color: white;
+}
+
+.preset-value {
+  width: 10em;
+  text-align: center;
+  border-radius: 6px;
+  transition: 0.3s;
+  margin: 5px;
+}
+
+.preset-value:hover {
+  background-color: #2E434A;
+  color: white;
 }
