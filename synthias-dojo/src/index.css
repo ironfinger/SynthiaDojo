@@ -1,0 +1,111 @@
+html, body {margin: 0; height: 100%; overflow: hidden; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif;
+  background-color: #99C1D3;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.main {
+  height: 100%;
+  font-weight: 300;
+  font-size: 30px;
+  color: #393939;
+}
+
+.main ul {
+  list-style: none;
+}
+
+.top {
+  width: 100%;
+  height: 60vh;
+  background-color: #99C1D3;
+}
+
+.top-left {
+  height: 58vh;
+  overflow-y: scroll;
+}
+
+.bottom {
+  width: 100%;
+  height: 40vh;
+  background-color: #546164;
+}
+
+.chartCont {
+  width: 20em;
+  height: 28em;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(35, 44, 46);
+  border-radius: 20px;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.chartCont:hover {
+  background-color: #2E434A;
+  color: white;
+}
+
+.chartWrapper {
+  background-color: #2E434A;
+  border-radius: 200px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.chartContainer {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+.preset-selector {
+  transition: 1s;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.preset-selector:hover {
+  background-color: #2E434A;
+  
+  color: white;
+}
+
+.preset-value {
+  width: 15em;
+  padding: 3px;
+  text-align: center;
+  border-radius: 6px;
+  transition: 0.3s;
+  margin: 5px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.preset-value:hover {
+  background-color: #2E434A;
+  color: white;
+}
+
+.descriptorChart {
+  width: 7em;
+  height: 7em;
+  text-align: center;
+  color:#B1E1EA;
+}
