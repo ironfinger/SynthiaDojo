@@ -88,14 +88,24 @@ code {
 }
 
 .preset-value {
-  width: 10em;
+  width: 15em;
+  padding: 3px;
   text-align: center;
   border-radius: 6px;
   transition: 0.3s;
   margin: 5px;
+  font-size: 12px;
+  overflow: hidden;
 }
 
 .preset-value:hover {
   background-color: #2E434A;
   color: white;
+}
+
+.descriptorChart {
+  width: 7em;
+  height: 7em;
+  text-align: center;
+  color:#B1E1EA;
 }

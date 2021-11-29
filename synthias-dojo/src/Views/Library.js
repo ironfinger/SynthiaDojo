@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/esm/Container';
 
 import PresetValue from '../Components/PresetValue';
+import DescriptorPreview from '../Components/DescriptorPreview';
 
 class Library extends Component {
 
@@ -31,7 +32,7 @@ class Library extends Component {
     }
 
     render() {
-        console.log(this.state.presets[0]);
+        
         return (
            <div class="main">
                <div class="top">
@@ -56,20 +57,36 @@ class Library extends Component {
                                             value={this.state.presets[this.state.currentPreset].volume}
                                         />
                                     </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc A Toggle'   
+                                            value={this.state.presets[this.state.currentPreset].oscillatorToggle}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc A Waveshape'   
+                                            value={this.state.presets[this.state.currentPreset].oscillatorWaveshape}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc A Octave'   
+                                            value={this.state.presets[this.state.currentPreset].oscillatorOctave}
+                                        />
+                                    </Col>
                                 </Row>
                             </Col>
                         </Row>
                     </Container>
                </div>
                <div class="bottom">
-                    <Container>
-                            <Col>
-                            
-                            </Col>
-                            <Col>
-                            
-                            </Col>
-                    </Container>
+                    <DescriptorPreview
+                        consistency={this.state.presets[this.state.currentPreset].consistency}
+                        dynamics={this.state.presets[this.state.currentPreset].dynamics}
+                        evolution={this.state.presets[this.state.currentPreset].evolution}
+                        brightness={this.state.presets[this.state.currentPreset].brightness}
+                    />
                </div>
            </div> 
         )
