@@ -21,7 +21,7 @@ class Stats extends Component {
 
     render() {
         return(
-            <Container>
+            <Container className='chartContainer'>
                 <Row>
                     <Col xs={4}>
                         <Chart presets={this.state.Presets.data} />
@@ -43,6 +43,33 @@ class Stats extends Component {
                     <Col xs={4}>
                         <Chart presets={this.state.Presets.data} />
                     </Col>
+                </Row>
+                <Row>
+                    <Col xs={4}>
+                        <Chart presets={this.state.Presets.data} />
+                    </Col>
+                    <Col xs={4}>
+                        <Chart presets={this.state.Presets.data} />
+                    </Col>
+                    <Col xs={4}>
+                        <Chart presets={this.state.Presets.data} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={4}>
+                        <Chart presets={this.state.Presets.data} />
+                    </Col>
+                    <Col xs={4}>
+                        <Chart presets={this.state.Presets.data} />
+                    </Col>
+                    <Col xs={4}>
+                        <Chart presets={this.state.Presets.data} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={4}></Col>
+                    <Col xs={4}><h1>No more charts</h1></Col>
+                    <Col xs={4}></Col>
                 </Row>
             </Container>
         )

@@ -1,4 +1,4 @@
-html, body {margin: 0; height: 100%; overflow: hidden}
+html, body {margin: 0; height: 100%; overflow: hidden; }
 
 body {
   margin: 0;
@@ -21,7 +21,6 @@ code {
   font-weight: 300;
   font-size: 30px;
   color: #393939;
-  
 }
 
 .main ul {
@@ -42,5 +41,31 @@ code {
 
 .chartCont {
   width: 20em;
-  height: 20em;
+  height: 28em;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(35, 44, 46);
+  border-radius: 20px;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.chartCont:hover {
+  background-color: #2E434A;
+  color: white;
+}
+
+.chartWrapper {
+  background-color: #2E434A;
+  border-radius: 200px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.chartContainer {
+  height: 90vh;
+  overflow-y: scroll;
 }

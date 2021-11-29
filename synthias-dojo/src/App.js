@@ -50,7 +50,7 @@ const Navigation = () => {
           <Nav.Link>Train</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>Library</Nav.Link>
+          <Nav.Link><Link style={{ textDecoration: 'none', color:'white' }} to='/'>Library</Link></Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link><Link style={{ textDecoration: 'none', color:'white' }} to='/stats'>Stats</Link></Nav.Link>
