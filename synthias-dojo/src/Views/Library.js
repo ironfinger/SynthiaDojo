@@ -60,19 +60,61 @@ class Library extends Component {
                                     <Col xs={4}>
                                         <PresetValue 
                                             name='Osc A Toggle'   
-                                            value={this.state.presets[this.state.currentPreset].oscillatorToggle}
+                                            value={this.state.presets[this.state.currentPreset].OscToggle01}
                                         />
                                     </Col>
                                     <Col xs={4}>
                                         <PresetValue 
                                             name='Osc A Waveshape'   
-                                            value={this.state.presets[this.state.currentPreset].oscillatorWaveshape}
+                                            value={this.state.presets[this.state.currentPreset].OscWaveshape01}
                                         />
                                     </Col>
                                     <Col xs={4}>
                                         <PresetValue 
                                             name='Osc A Octave'   
-                                            value={this.state.presets[this.state.currentPreset].oscillatorOctave}
+                                            value={this.state.presets[this.state.currentPreset].OscOctave01}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc A Semi'   
+                                            value={this.state.presets[this.state.currentPreset].OscSemi01}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc A Env Time'   
+                                            value={this.state.presets[this.state.currentPreset].OsvEnvT01}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc B Toggle'   
+                                            value={this.state.presets[this.state.currentPreset].OscToggle02}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc B Waveshape'   
+                                            value={this.state.presets[this.state.currentPreset].OscWaveshape02}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc B Octave'   
+                                            value={this.state.presets[this.state.currentPreset].OscOctave02}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc B Semi'   
+                                            value={this.state.presets[this.state.currentPreset].OscSemi02}
+                                        />
+                                    </Col>
+                                    <Col xs={4}>
+                                        <PresetValue 
+                                            name='Osc B Env Time'   
+                                            value={this.state.presets[this.state.currentPreset].OscEnvT02}
                                         />
                                     </Col>
                                 </Row>

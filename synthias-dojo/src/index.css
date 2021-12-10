@@ -18,6 +18,7 @@ code {
 
 .main {
   height: 100%;
+  width: 100%;
   font-weight: 300;
   font-size: 30px;
   color: #393939;
@@ -108,4 +109,60 @@ code {
   height: 7em;
   text-align: center;
   color:#B1E1EA;
+  margin-bottom: 60px;
+}
+
+.trainLeft {
+  width: 50vh;
+  background-color: blanchedalmond;
+}
+
+.trainRight {
+  width: 50vh;
+  background-color: blueviolet;
+}
+
+.TrainRow {
+  width: 100%;
+}
+
+/* Split the screen in half */
+.split {
+  margin-top: 56px;
+  height: 95%;
+  width: 50%;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.leftTrain {
+  left: 0;
+  background-color: #99C1D3;
+  padding: 10px;
+  padding-right: 15px;
+}
+
+/* Control the right side */
+.rightTrain {
+  right: 0;
+  background-color: #546164;
+}
+
+
+.trainButton {
+  margin-top: 5px;
+  padding: 5px;
+  padding-top: 9px;
+  background-color: #546164;
+  border-radius: 12px;
+  transition: 0.3s;
+  color: #B1E1EA;
+}
+
+.trainButton:hover {
+  background-color: #B5FFC9;
+  color: #393939;
 }

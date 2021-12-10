@@ -13,7 +13,7 @@ import Navbar from 'react-bootstrap/NavBar';
 // Import my components:
 import Library from './Views/Library';
 import Stats from './Views/Stats';
-
+import Train from './Views/Train';
 
 class App extends Component {
   render() {
@@ -28,6 +28,7 @@ class App extends Component {
         <Routes>
           <Route exact path='/' element={<Library />} />
           <Route path='/stats' element={<Stats />} />
+          <Route path='/train' element={<Train />} />
         </Routes>
       </Router>
     )
@@ -47,7 +48,7 @@ const Navigation = () => {
           <Nav.Link>Design</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link>Train</Nav.Link>
+          <Nav.Link><Link style={{ textDecoration: 'none', color: 'white' }} to='/train'>Train</Link></Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link><Link style={{ textDecoration: 'none', color:'white' }} to='/'>Library</Link></Nav.Link>
