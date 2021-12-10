@@ -39,7 +39,7 @@ class DescriptorPreview extends Component {
                                 labels={() => null}
                                 colorScale={this.colors[0]}
                             />
-                            <h1>Consistency</h1>
+                            <p>Consistency: {this.props.consistency}</p>
                         </div>
                     </Col>
                     <Col xs={3} className='d-flex justify-content-center'>
@@ -52,7 +52,7 @@ class DescriptorPreview extends Component {
                                 labels={() => null}
                                 colorScale={this.colors[0]}
                             />
-                            <h1>Brightness</h1>
+                            <p>Brightness: {this.props.brightness}</p>
                         </div>
                     </Col>
                     <Col xs={3} className='d-flex justify-content-center'>
@@ -65,7 +65,7 @@ class DescriptorPreview extends Component {
                                 labels={() => null}
                                 colorScale={this.colors[0]}
                             />
-                            <h1>Dynamics</h1>
+                            <p>Dynamics: {this.props.dynamics}</p>
                         </div>
                     </Col>
                     <Col xs={3} className='d-flex justify-content-center'>
@@ -78,7 +78,7 @@ class DescriptorPreview extends Component {
                                 labels={() => null}
                                 colorScale={this.colors[0]}
                             />
-                            <h1>Evolution</h1>
+                            <p>Evolution: {this.props.evolution}</p>
                         </div>
                     </Col>
                     
