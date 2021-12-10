@@ -22,7 +22,8 @@ class Train extends Component {
         // Bind onclick functions:
         this.newPresetSelect = this.newPresetSelect.bind(this);
         this.selectedPresetSelect = this.selectedPresetSelect.bind(this);
-        
+        this.sendToTrain = this.sendToTrain.bind(this);
+
         // Bind onChange functions:
         this.onDescriptorChange = this.onDescriptorChange.bind(this);
     }
@@ -47,7 +48,6 @@ class Train extends Component {
 
     selectedPresetSelect(arg) {
         console.log(arg);
-        console.log('se')
         let placeholders = [3, 0, 0, 0];
 
         this.setState({ currentlySelected: arg, placeholders: placeholders });
@@ -73,6 +73,10 @@ class Train extends Component {
         });
     }
 
+    sendToTrain() {
+        console.log(this.state.presetsToTrain);
+    }
+
     render() {
 
         let selectedPreset = this.state.presetsToTrain[this.state.currentlySelected]
@@ -94,7 +98,7 @@ class Train extends Component {
                         <Container>
                             <Row>
                                 <Col xs={6}>
-                                    <Button variant="dark">Send to Train</Button>
+                                    <Button onClick={() => {this.sendToTrain()}} variant="dark">Send to Train</Button>
                                 </Col>
                                 <Col xs={6}>
                                     <Button variant="dark">Send to Test</Button>
