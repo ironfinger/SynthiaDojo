@@ -36,10 +36,13 @@ class Train extends Component {
     newPresetSelect(arg) {
         // Check if theres anything in the presets to train first:
         var currentArray = this.state.presetsToTrain;
-
+        
         currentArray.push(this.state.newPresets[arg]);
-        this.setState({ presetsToTrain: currentArray });
-        console.log(this.state.presetsToTrain);
+
+        let newPresetsTemp = this.state.newPresets;
+        let removedItem = this.state.newPresets.splice(arg, 1);
+        
+        this.setState({ newPresets: newPresetsTemp, presetsToTrain: currentArray });
     }
 
     selectedPresetSelect(arg) {
