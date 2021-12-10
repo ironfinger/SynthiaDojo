@@ -108,16 +108,16 @@ class Train extends Component {
                             />
                             <Row>
                                 <Col xs={3}>
-                                    <Form.Control defaultValue={this.state.placeholders[0]} onChange={(e) => {this.onDescriptorChange(e, 0)}}/>
+                                    <Form.Control className='descriptorInputs' defaultValue={this.state.placeholders[0]} onChange={(e) => {this.onDescriptorChange(e, 0)}}/>
                                 </Col>
                                 <Col xs={3}>
-                                    <Form.Control defaultValue={this.state.placeholders[1]} onChange={(e) => {this.onDescriptorChange(e, 1)}}/>
+                                    <Form.Control className='descriptorInputs' defaultValue={this.state.placeholders[1]} onChange={(e) => {this.onDescriptorChange(e, 1)}}/>
                                 </Col>
                                 <Col xs={3}>
-                                    <Form.Control defaultValue={this.state.placeholders[2]} onChange={(e) => {this.onDescriptorChange(e, 2)}}/>
+                                    <Form.Control className='descriptorInputs' defaultValue={this.state.placeholders[2]} onChange={(e) => {this.onDescriptorChange(e, 2)}}/>
                                 </Col>
                                 <Col xs={3}>
-                                    <Form.Control defaultValue={this.state.placeholders[3]} onChange={(e) => {this.onDescriptorChange(e, 3)}}/>
+                                    <Form.Control className='descriptorInputs' defaultValue={this.state.placeholders[3]} onChange={(e) => {this.onDescriptorChange(e, 3)}}/>
                                 </Col>
                             </Row>
                             {

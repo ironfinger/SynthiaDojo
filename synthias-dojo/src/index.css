@@ -166,3 +166,10 @@ code {
   background-color: #B5FFC9;
   color: #393939;
 }
+
+.descriptorInputs:not(active) {
+  background-color: #99C1D3;
+  border-color: #99C1D3;
+  color: #393939;
+}
+
