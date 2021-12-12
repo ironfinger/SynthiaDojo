@@ -88,6 +88,17 @@ class Train extends Component {
     }
 
     sendToTrain() {
+        let temp = this.state.presetsToTrain;
+        temp.shift();
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ presets: temp})
+        }
+
+        fetch('/api/newdata', requestOptions).then(res => res.json()).then(data => console.log(data));
+
 
     }
 
