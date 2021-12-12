@@ -17,7 +17,7 @@ class Train extends Component {
     constructor (props) {
         super (props)
         
-        let placeholderPreset = {
+        this.placeholderPreset = {
             name: 'placeholder',
             descriptors: {
                 consistency: 24,
@@ -27,9 +27,7 @@ class Train extends Component {
             }
         }
 
-
-
-        this.state = { newPresets: ['none'], presetsToTrain: [placeholderPreset], placeholders: [0, 0, 0, 0], currentlySelected: 0};
+        this.state = { newPresets: ['none'], presetsToTrain: [this.placeholderPreset], placeholders: [0, 0, 0, 0], currentlySelected: 0};
     
         // Bind onclick functions:
         this.newPresetSelect = this.newPresetSelect.bind(this);
@@ -98,8 +96,9 @@ class Train extends Component {
         }
 
         fetch('/api/newdata', requestOptions).then(res => res.json()).then(data => console.log(data));
-
-
+        this.setState({
+            presetsToTrain: [this.placeholderPreset]
+        })
     }
 
     render() {

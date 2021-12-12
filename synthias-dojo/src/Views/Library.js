@@ -13,8 +13,17 @@ class Library extends Component {
     constructor(props) {
         super (props);
 
-        this.state = { AdvFiles: ['none'], presets: ['none'], currentPreset: 0 };
+        this.placeholderPreset = {
+            name: 'placeholder',
+            descriptors: {
+                consistency: 24,
+                brightness: 10,
+                dynamics: 40,
+                evolution: 50
+            }
+        }
 
+        this.state = { AdvFiles: ['none'], presets: [this.placeholderPreset], currentPreset: 0 };
 
     }
 
@@ -124,10 +133,10 @@ class Library extends Component {
                </div>
                <div class="bottom">
                     <DescriptorPreview
-                        consistency={this.state.presets[this.state.currentPreset].consistency}
-                        dynamics={this.state.presets[this.state.currentPreset].dynamics}
-                        evolution={this.state.presets[this.state.currentPreset].evolution}
-                        brightness={this.state.presets[this.state.currentPreset].brightness}
+                        consistency={this.state.presets[this.state.currentPreset].descriptors.consistency}
+                        dynamics={this.state.presets[this.state.currentPreset].descriptors.dynamics}
+                        evolution={this.state.presets[this.state.currentPreset].descriptors.evolution}
+                        brightness={this.state.presets[this.state.currentPreset].descriptors.brightness}
                     />
                </div>
            </div> 
