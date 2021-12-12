@@ -8,11 +8,44 @@ import Col from 'react-bootstrap/Col';
 
 import Chart from '../Components/Chart';
 
+import {
+    Chart as ChartJS,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+} from 'chart.js'
+
+import { Radar } from 'react-chartjs-2';
+
 class Stats extends Component {
     constructor (props) {
         super (props);
-
         this.state = { statistics: [{ title: 'no data', amount: 11, target: 1000}] };
+
+        ChartJS.register(
+            RadialLinearScale,
+            PointElement,
+            LineElement,
+            Filler,
+            Tooltip,
+            Legend
+        );
+
+        this.data = {
+            labels: ['Consistency Low', 'Consistency High', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'],
+            datasets: [
+                {
+                    label: '# of Votes',
+                    data: [6, 9, 3, 5, 2, 3],
+                    backgroundColor: 'rgba(181, 255, 201, 0.7)',
+                    color: 'rgba(255, 0, 0, 1)',
+                    borderWidth: 1,
+                }
+            ]
+        };
     }
 
     componentDidMount() {
@@ -27,6 +60,11 @@ class Stats extends Component {
         return(
             <Container className='chartContainer'>
                 <Row>
+                    <Col>
+                    <div style={{ height: '30em', width: '30em'}}>
+                        <Radar data={this.data} />
+                    </div>
+                    </Col>
                     {
                         this.state.statistics.map((stat) => {
                             return (<Col xs={4}><Chart stats={stat} /></Col>)
