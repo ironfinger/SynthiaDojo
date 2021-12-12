@@ -16,8 +16,20 @@ import DescriptorPreview from '../Components/DescriptorPreview';
 class Train extends Component {
     constructor (props) {
         super (props)
+        
+        let placeholderPreset = {
+            name: 'placeholder',
+            descriptors: {
+                consistency: 24,
+                brightness: 10,
+                dynamics: 40,
+                evolution: 50
+            }
+        }
 
-        this.state = { newPresets: ['none'], presetsToTrain: [{name: 'nothing selected'}], placeholders: [0, 0, 0, 0], currentlySelected: 0};
+
+
+        this.state = { newPresets: ['none'], presetsToTrain: [placeholderPreset], placeholders: [0, 0, 0, 0], currentlySelected: 0};
     
         // Bind onclick functions:
         this.newPresetSelect = this.newPresetSelect.bind(this);
@@ -30,7 +42,7 @@ class Train extends Component {
 
     componentDidMount() {
         fetch('/api/find-new-data').then(res => res.json()).then(data => {
-            this.setState({newPresets: data.newPresets});
+            this.setState({newPresets: data.presets});
         });
     }
 
@@ -57,15 +69,17 @@ class Train extends Component {
         
         //Get the presets:
         let presets = this.state.presetsToTrain
-        
+
+        let currentDescriptors = presets[this.state.currentlySelected].descriptors;
+
         if (i === 0) {
-            presets[this.state.currentlySelected].consistency = parseInt(arg.target.value)
+            presets[this.state.currentlySelected].descriptors.consistency = parseInt(arg.target.value)
         } else if (i === 1) {
-            presets[this.state.currentlySelected].brightness = parseInt(arg.target.value)
+            presets[this.state.currentlySelected].descriptors.brightness = parseInt(arg.target.value)
         } else if (i === 2) {
-            presets[this.state.currentlySelected].dynamics = parseInt(arg.target.value)
+            presets[this.state.currentlySelected].descriptors.dynamics = parseInt(arg.target.value)
         } else if (i === 3) {
-            presets[this.state.currentlySelected].evolution = parseInt(arg.target.value)
+            presets[this.state.currentlySelected].descriptors.evolution = parseInt(arg.target.value)
         }
 
         this.setState({
@@ -74,13 +88,13 @@ class Train extends Component {
     }
 
     sendToTrain() {
-        console.log(this.state.presetsToTrain);
+
     }
 
     render() {
 
         let selectedPreset = this.state.presetsToTrain[this.state.currentlySelected]
-
+        let selectedDescriptors = selectedPreset.descriptors;
         return (
             <div className='main'>
                 <div className='split leftTrain'>
@@ -108,10 +122,10 @@ class Train extends Component {
                                 <h1>Selected Preset: {this.state.presetsToTrain[this.state.currentlySelected].name}</h1>
                             </Row>
                             <DescriptorPreview 
-                                consistency={selectedPreset.consistency}
-                                dynamics={selectedPreset.dynamics}
-                                evolution={selectedPreset.evolution}
-                                brightness={selectedPreset.brightness}
+                                consistency={selectedDescriptors.consistency}
+                                dynamics={selectedDescriptors.dynamics}
+                                evolution={selectedDescriptors.evolution}
+                                brightness={selectedDescriptors.brightness}
                             />
                             <Row>
                                 <Col xs={3}>
