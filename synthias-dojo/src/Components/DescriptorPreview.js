@@ -32,6 +32,7 @@ class DescriptorPreview extends Component {
                     <Col xs={3} className='d-flex justify-content-center'>
                         <div className='descriptorChart'>
                             <VictoryPie
+                                animate={{ easing: 'exp', duration: 1000}}
                                 width={250} height={250}
                                 data={[{x: 'hello', y: this.props.consistency}, {x:'total', y: this.consistencyTotal}]}
                                 innerRadius={90}
@@ -45,6 +46,7 @@ class DescriptorPreview extends Component {
                     <Col xs={3} className='d-flex justify-content-center'>
                         <div className='descriptorChart'>
                             <VictoryPie
+                                animate={{ easing: 'exp', duration: 1000}}
                                 width={250} height={250}
                                 data={[{x: 'hello', y: this.props.brightness}, {x:'total', y: this.brightnessTotal}]}
                                 innerRadius={90}
@@ -58,6 +60,7 @@ class DescriptorPreview extends Component {
                     <Col xs={3} className='d-flex justify-content-center'>
                         <div className='descriptorChart'>
                             <VictoryPie
+                                animate={{ easing: 'exp', duration: 1000}}
                                 width={250} height={250}
                                 data={[{x: 'hello', y: this.props.dynamics}, {x:'total', y: this.dynamicsTotal}]}
                                 innerRadius={90}
@@ -71,6 +74,7 @@ class DescriptorPreview extends Component {
                     <Col xs={3} className='d-flex justify-content-center'>
                         <div className='descriptorChart'>
                             <VictoryPie
+                                animate={{ easing: 'exp', duration: 1000}}
                                 width={250} height={250}
                                 data={[{x: 'hello', y: this.props.evolution}, {x:'total', y: this.evolutionTotal}]}
                                 innerRadius={90}
