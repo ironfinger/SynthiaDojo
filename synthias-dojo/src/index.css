@@ -72,8 +72,8 @@ code {
 }
 
 .chartContainer {
-  height: 90vh;
-  overflow-y: scroll;
+  height: 100vh;
+  overflow: visible;
 }
 
 .preset-selector {
@@ -173,3 +173,8 @@ code {
   color: #393939;
 }
 
+.chartContV2 {
+  box-shadow: inset 0 0 20px #3c5766;
+  padding: 30px;
+  border-radius: 10px;
+}
