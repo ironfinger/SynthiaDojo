@@ -44,6 +44,10 @@ class Train extends Component {
         });
     }
 
+    componentDidCatch(error) {
+        console.log(error);
+    }
+
     newPresetSelect(arg) {
         // Check if theres anything in the presets to train first:
         var currentArray = this.state.presetsToTrain;
@@ -97,7 +101,8 @@ class Train extends Component {
 
         fetch('/api/newdata', requestOptions).then(res => res.json()).then(data => console.log(data));
         this.setState({
-            presetsToTrain: [this.placeholderPreset]
+            presetsToTrain: [this.placeholderPreset],
+            currentlySelected: 0
         })
     }
 
