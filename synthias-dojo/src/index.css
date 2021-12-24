@@ -178,3 +178,15 @@ code {
   padding: 30px;
   border-radius: 10px;
 }
+
+.FeatureSelector li {
+  float: left;
+  font-size: 20px;
+  margin-left: 10px;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #3c5766;
+  border-radius: 6px;
+  padding: 5px;
+  color: #99C1D3;
+}

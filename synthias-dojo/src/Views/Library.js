@@ -1,43 +1,121 @@
 import { React, Component } from 'react';
 import '../App.css';
+
 // Import react bootstrap components:
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/esm/Container';
 
-import PresetValue from '../Components/PresetValue';
-import DescriptorPreview from '../Components/DescriptorPreview';
+// Import my components:
+import DescriptorPreview from '../Components/DescriptorPreview'; // This is to show the consistency brightness ect of each preset.
+import OscillatorChart from '../Components/OscillatorChart'; // This is to show oscillator data.
+import AmpChart from '../Components/AmpChart'; // This is to show amp data.
+import Env01Chart from '../Components/Env01Chart'; // This is to show env 01 data.
+import Env02Chart from '../Components/Env02Chart'; // This is to show env 02 data.
+import FilterChart from '../Components/FilterChart'; // This is to show filter data.
+import LfoChart from '../Components/LfoChart'; // This is to show the lfo data.
+import GlobalsChart from '../Components/GlobalsChart'; // This is to show the globals data.
+
+// Import temp json:
+import data from '../Data/temp.json' // This is temp data to stop the web app from crashing on load.
 
 class Library extends Component {
 
     constructor(props) {
         super (props);
 
-        this.placeholderPreset = {
-            name: 'placeholder',
-            descriptors: {
-                consistency: 24,
-                brightness: 10,
-                dynamics: 40,
-                evolution: 50
-            }
-        }
-
-        this.state = { AdvFiles: ['none'], presets: [this.placeholderPreset], currentPreset: 0 };
-
+        this.state = { 
+            AdvFiles: ['none'], 
+            presets: [data], 
+            currentPreset: 0,
+            chartSelector: 4
+        };
     }
 
-    componentDidMount() {
+    componentDidMount() { // This is called once the component is loaded into the DOM.
+        // Get request the preset data from the api.
         fetch('/api/get-presets').then(res => res.json()).then(data => {
             console.log(data);
             this.setState({presets: data.presets});
         })
     }
 
-    listClick(arg) {
+    listClick(arg) { // Handle preset selection clicks.
         this.setState(state => ({
             currentPreset: arg
         }));
+    }
+
+    displayChart() {
+        if (this.state.chartSelector === 0) {
+
+            // Get Oscillator data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let signalChain01 = preset.signalChain01.Oscillator;
+            let signalChain02 = preset.signalChain02.Oscillator;
+
+            return <OscillatorChart osc1={signalChain01} osc2={signalChain02}/>
+        
+        } else if (this.state.chartSelector === 1) {
+        
+            // Get Amp data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let signalChain01 = preset.signalChain01.amp;
+            let signalChain02 = preset.signalChain02.amp;
+
+            return <AmpChart osc1={signalChain01} osc2={signalChain02} />
+
+        } else if (this.state.chartSelector === 2) {
+
+            // Get Env 01 data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let signalChain01 = preset.signalChain01.env01;
+            let signalChain02 = preset.signalChain02.env01;
+
+            return <Env01Chart osc1={signalChain01} osc2={signalChain02} />
+
+        } else if (this.state.chartSelector === 3) {
+
+            // Get Env 01 data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let signalChain01 = preset.signalChain01.env02;
+            let signalChain02 = preset.signalChain02.env02;
+
+            return <Env02Chart osc1={signalChain01} osc2={signalChain02} />
+
+        } else if (this.state.chartSelector === 4) {
+
+            // Get filter data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let signalChain01 = preset.signalChain01.filter;
+            let signalChain02 = preset.signalChain02.filter;
+
+            return <FilterChart osc1={signalChain01} osc2={signalChain02} />
+
+        } else if (this.state.chartSelector === 5) {
+
+            // Get Lfo data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let signalChain01 = preset.signalChain01.lfo;
+            let signalChain02 = preset.signalChain02.lfo;
+
+            return <LfoChart osc1={signalChain01} osc2={signalChain02} />
+        } else if (this.state.chartSelector === 6) {
+
+            // Get Globals data:
+            let preset = this.state.presets[this.state.currentPreset];
+            let globals = preset.globals;
+
+            return <GlobalsChart globals={globals} />
+
+        }
+
+        return <h1>NULL</h1>
+    }
+
+    // Handle chart selection clicks.
+    featureSelect(arg) {
+        this.setState({ chartSelector: arg });
     }
 
     render() {
@@ -60,72 +138,21 @@ class Library extends Component {
                             </Col>
                             <Col>
                                 <Row>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Volume'   
-                                            value={this.state.presets[this.state.currentPreset].volume}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc A Toggle'   
-                                            value={this.state.presets[this.state.currentPreset].OscToggle01}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc A Waveshape'   
-                                            value={this.state.presets[this.state.currentPreset].OscWaveshape01}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc A Octave'   
-                                            value={this.state.presets[this.state.currentPreset].OscOctave01}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc A Semi'   
-                                            value={this.state.presets[this.state.currentPreset].OscSemi01}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc A Env Time'   
-                                            value={this.state.presets[this.state.currentPreset].OsvEnvT01}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc B Toggle'   
-                                            value={this.state.presets[this.state.currentPreset].OscToggle02}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc B Waveshape'   
-                                            value={this.state.presets[this.state.currentPreset].OscWaveshape02}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc B Octave'   
-                                            value={this.state.presets[this.state.currentPreset].OscOctave02}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc B Semi'   
-                                            value={this.state.presets[this.state.currentPreset].OscSemi02}
-                                        />
-                                    </Col>
-                                    <Col xs={4}>
-                                        <PresetValue 
-                                            name='Osc B Env Time'   
-                                            value={this.state.presets[this.state.currentPreset].OscEnvT02}
-                                        />
-                                    </Col>
+                                    <Row>
+                                        <ul className="FeatureSelector">
+                                            <li onClick={() => this.featureSelect(0)}>Oscillator</li>
+                                            <li onClick={() => this.featureSelect(1)}>Amp</li>
+                                            <li onClick={() => this.featureSelect(2)}>Env 01</li>
+                                            <li onClick={() => this.featureSelect(3)}>Env 02</li>
+                                            <li onClick={() => this.featureSelect(4)}>Filter</li>
+                                            <li onClick={() => this.featureSelect(5)}>LFO</li>
+                                            <li onClick={() => this.featureSelect(6)}>Globals</li>
+                                        </ul>
+                                    </Row>
+                                    {/* We need a component to show the graph */}
+                                    <div>
+                                        { this.displayChart() }
+                                    </div>
                                 </Row>
                             </Col>
                         </Row>
