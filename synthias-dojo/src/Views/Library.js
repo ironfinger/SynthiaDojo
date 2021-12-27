@@ -15,6 +15,7 @@ import Env02Chart from '../Components/Env02Chart'; // This is to show env 02 dat
 import FilterChart from '../Components/FilterChart'; // This is to show filter data.
 import LfoChart from '../Components/LfoChart'; // This is to show the lfo data.
 import GlobalsChart from '../Components/GlobalsChart'; // This is to show the globals data.
+import JsonView from '../Components/JsonView'; // This is to show the json data of each preset.
 
 // Import temp json:
 import data from '../Data/temp.json' // This is temp data to stop the web app from crashing on load.
@@ -50,6 +51,7 @@ class Library extends Component {
         // Get signal chains:
         let signalChain01 = this.state.presets[this.state.currentPreset].SignalChain1;
         let signalChain02 = this.state.presets[this.state.currentPreset].SignalChain2;
+        let selectedPresetName = this.state.presets[this.state.currentPreset].name;
 
         if (this.state.chartSelector === 0) {
             return <OscillatorChart osc1={signalChain01} osc2={signalChain02} />
@@ -65,6 +67,8 @@ class Library extends Component {
             return <LfoChart osc1={signalChain01} osc2={signalChain02} />
         } else if (this.state.chartSelector === 6) {
             return <GlobalsChart osc1={this.state.presets[this.state.currentPreset].globals} />
+        } else if (this.state.chartSelector === 7) {
+            return <JsonView name={selectedPresetName} data={this.state.presets[this.state.currentPreset]} />
         }
 
         return <h1>NULL</h1>
@@ -105,6 +109,7 @@ class Library extends Component {
                                             <li onClick={() => this.featureSelect(4)}>Filter</li>
                                             <li onClick={() => this.featureSelect(5)}>LFO</li>
                                             <li onClick={() => this.featureSelect(6)}>Globals</li>
+                                            <li onClick={() => this.featureSelect(7)}>Json</li>
                                         </ul>
                                     </Row>
                                     {/* We need a component to show the graph */}
