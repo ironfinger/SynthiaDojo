@@ -57,32 +57,46 @@ class GlobalsChart extends Component {
             'Vibrato Speed',
             'Vibrato Toggle'
         ];
+
+        this.globalsValuesV2 = [
+            'KeyboardError',
+            'KeyboardFineTune',
+            'KeyboardPriority',
+            'KeyboardStretch',
+            'KeyboardUnison',
+            'KeyboardUnisonDelay',
+            'KeyboardUnisonToggle',
+            'NoiseBalance',
+            'NoiseColor',
+            'NoiseLevel',
+            'NoiseToggle',
+            'Octave',
+            'PitchBendRange',
+            'Polyphony',
+            'PortamentoLegato',
+            'PortamentoMode',
+            'PortamentoTime',
+            'PortamentoToggle',
+            'Transpose',
+            'VibratoAmount',
+            'VibratoDelay',
+            'VibratoError',
+            'VibratoFadeIn',
+            'VibratoModWheel',
+            'VibratoSpeed',
+            'VibratoToggle',
+            'Volume'
+        ]
     }
 
     prepareData() {
-        let globals = [
-            this.props.globals.keyboardDetune,
-            this.props.globals.keyboardPriority,
-            this.props.globals.keyboardUnison,
-            this.props.globals.keyboardUnisonDelay,
-            this.props.globals.noiseColor,
-            this.props.globals.noiseLevel,
-            this.handleBool(this.props.globals.noiseToggle),
-            this.handleBool(this.props.globals.portamentoLegato),
-            this.props.globals.portamentoMode,
-            this.props.globals.portamentoTime,
-            this.handleBool(this.props.globals.portamentoToggle),
-            this.handleBool(this.props.globals.unisonToggle),
-            this.props.globals.vibratoAmount,
-            this.props.globals.vibratoDelay,
-            this.props.globals.vibratoError,
-            this.props.globals.vibratoFadeIn,
-            this.props.globals.vibratoSpeed,
-            this.handleBool(this.props.globals.vibratoToggle),
+        let values = [];
 
-        ]
+        this.globalsValuesV2.map((x) => {
+            values.push(this.props.osc1[x]);
+        });
 
-        return globals
+        return values
     }
 
     handleBool(arg) {
@@ -95,9 +109,10 @@ class GlobalsChart extends Component {
     render() {
         
         let myData = this.prepareData();
-
+        console.log('GLOBALS');
+        console.log(myData);
         let graphData = {
-            labels: this.globalsValues,
+            labels: this.globalsValuesV2,
             datasets: [
                 {
                     label: 'Globals',

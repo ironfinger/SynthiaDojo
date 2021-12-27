@@ -28,15 +28,15 @@ class Library extends Component {
             AdvFiles: ['none'], 
             presets: [data], 
             currentPreset: 0,
-            chartSelector: 4
+            chartSelector: 0
         };
     }
 
     componentDidMount() { // This is called once the component is loaded into the DOM.
         // Get request the preset data from the api.
         fetch('/api/get-presets').then(res => res.json()).then(data => {
-            console.log(data);
-            this.setState({presets: data.presets});
+            this.setState({ presets: data.presets})
+            console.log(this.state.presets);
         })
     }
 
@@ -47,67 +47,24 @@ class Library extends Component {
     }
 
     displayChart() {
+        // Get signal chains:
+        let signalChain01 = this.state.presets[this.state.currentPreset].SignalChain1;
+        let signalChain02 = this.state.presets[this.state.currentPreset].SignalChain2;
+
         if (this.state.chartSelector === 0) {
-
-            // Get Oscillator data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let signalChain01 = preset.signalChain01.Oscillator;
-            let signalChain02 = preset.signalChain02.Oscillator;
-
-            return <OscillatorChart osc1={signalChain01} osc2={signalChain02}/>
-        
+            return <OscillatorChart osc1={signalChain01} osc2={signalChain02} />
         } else if (this.state.chartSelector === 1) {
-        
-            // Get Amp data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let signalChain01 = preset.signalChain01.amp;
-            let signalChain02 = preset.signalChain02.amp;
-
-            return <AmpChart osc1={signalChain01} osc2={signalChain02} />
-
+            return <AmpChart osc1={signalChain01} osc2={signalChain02} /> 
         } else if (this.state.chartSelector === 2) {
-
-            // Get Env 01 data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let signalChain01 = preset.signalChain01.env01;
-            let signalChain02 = preset.signalChain02.env01;
-
-            return <Env01Chart osc1={signalChain01} osc2={signalChain02} />
-
+            return <Env01Chart osc1={signalChain01['Envelope.0']} osc2={signalChain02['Envelope.0']} />
         } else if (this.state.chartSelector === 3) {
-
-            // Get Env 01 data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let signalChain01 = preset.signalChain01.env02;
-            let signalChain02 = preset.signalChain02.env02;
-
-            return <Env02Chart osc1={signalChain01} osc2={signalChain02} />
-
+            return <Env01Chart osc1={signalChain01['Envelope.1']} osc2={signalChain02['Envelope.1']} />
         } else if (this.state.chartSelector === 4) {
-
-            // Get filter data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let signalChain01 = preset.signalChain01.filter;
-            let signalChain02 = preset.signalChain02.filter;
-
             return <FilterChart osc1={signalChain01} osc2={signalChain02} />
-
         } else if (this.state.chartSelector === 5) {
-
-            // Get Lfo data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let signalChain01 = preset.signalChain01.lfo;
-            let signalChain02 = preset.signalChain02.lfo;
-
             return <LfoChart osc1={signalChain01} osc2={signalChain02} />
         } else if (this.state.chartSelector === 6) {
-
-            // Get Globals data:
-            let preset = this.state.presets[this.state.currentPreset];
-            let globals = preset.globals;
-
-            return <GlobalsChart globals={globals} />
-
+            return <GlobalsChart osc1={this.state.presets[this.state.currentPreset].globals} />
         }
 
         return <h1>NULL</h1>
@@ -119,11 +76,12 @@ class Library extends Component {
     }
 
     render() {
-        
+        console.log(this.state.presets[this.state.currentPreset].descriptors);
         return (
            <div class="main">
                <div class="top">
                     <Container>
+                    <h1>{this.state.presets[this.state.currentPreset].name}</h1>
                         <Row>
                             <Col>
                                 <div className="top-left">

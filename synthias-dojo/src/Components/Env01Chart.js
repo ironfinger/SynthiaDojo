@@ -50,38 +50,50 @@ class Env01Chart extends Component {
             'Sustain Level',
             'Sustain Time'
         ]
+
+        this.envValuesV2 = [
+            'AmpMod',
+            'AttackMod',
+            'AttackTime',
+            'DecayTime',
+            'ExponentialSlope',
+            'FreeRun',
+            'Legato',
+            'Loop',
+            'ReleaseTime',
+            'SustainLevel',
+            'SustainTime'
+        ];
+
+        this.labels = [
+            'Amp Mod',
+            'Attack Mod',
+            'Attack',
+            'Decay',
+            'ExponentialSlope',
+            'FreeRun',
+            'Legato',
+            'Loop',
+            'Release',
+            'Sustain Level',
+            'Sustain'
+        ];
     }
 
     prepareData() {
-        let signalChain01 = [
-            this.props.osc1.envAmpMod,
-            this.props.osc1.envAttackMod,
-            this.props.osc1.envAttackTime,
-            this.props.osc1.envDecayTime,
-            this.handleBool(this.props.osc1.envExpoSlope),
-            this.handleBool(this.props.osc1.envFreeRun),
-            this.handleBool(this.props.osc1.envLegato),
-            this.props.osc1.envLoop,
-            this.props.osc1.envReleaseTime,
-            this.props.osc1.envSustainLevel,
-            this.props.osc1.envSustainTime
-        ]
+        
+        let signalChain1 = [];
+        let signalChain2 = [];
 
-        let signalChain02 = [
-            this.props.osc2.envAmpMod,
-            this.props.osc2.envAttackMod,
-            this.props.osc2.envAttackTime,
-            this.props.osc2.envDecayTime,
-            this.handleBool(this.props.osc2.envExpoSlope),
-            this.handleBool(this.props.osc2.envFreeRun),
-            this.handleBool(this.props.osc2.envLegato),
-            this.props.osc2.envLoop,
-            this.props.osc2.envReleaseTime,
-            this.props.osc2.envSustainLevel,
-            this.props.osc2.envSustainTime
-        ]
+        this.envValuesV2.map((x) => {
+            signalChain1.push(this.props.osc1[x]);
+        });
 
-        return [signalChain01, signalChain02];
+        this.envValuesV2.map((x) => {
+            signalChain2.push(this.props.osc2[x]);
+        });
+
+        return [signalChain1, signalChain2];
     }
 
     handleBool(arg) {
@@ -96,7 +108,7 @@ class Env01Chart extends Component {
         let myData = this.prepareData();
 
         let graphData = {
-            labels: this.envValues,
+            labels: this.labels,
             datasets: [
                 {
                     label: 'Signal Chain 01',

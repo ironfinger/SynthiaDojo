@@ -37,60 +37,75 @@ class OscillatorChart extends Component {
             secondary: 'rgba(137, 72, 219, 0.7)'
         }
 
-        this.oscilatorValues = [
-            'Balance',
-            'Detune',
-            'Env A',
-            'Env T',
-            'LFO PW',
-            'LFO Pitch',
-            'Level',
-            'Modulation',
-            'Octave',
-            'PulseWidth',
-            'Semi',
-            'Sub',
-            'Toggle',
-            'Waveshape'
+        this.oscillatorValuesV2 = [
+            'OscillatorToggle',
+            'OscillatorWaveShape',
+            'OscillatorOct',
+            'OscillatorSemi',
+            'OscillatorMode',
+            'OscillatorEnvTime',
+            'OscillatorDetune',
+            'OscillatorModulation1',
+            'OscillatorPulseWidth',
+            'OscillatorSubAmount',
+            'OscillatorBalance',
+            'OscillatorEnvAmount',
+            'OscillatorLFOModPW',
+            'OscillatorLevel'
         ]
+
+        this.labels = [
+            'Toggle',
+            'Waveshape',
+            'Octave',
+            'Semi',
+            'Mode',
+            'Env Time',
+            'Detune',
+            'Modulation1',
+            'PulseWidth',
+            'Sub Amount',
+            'Balance',
+            'Env Amount',
+            'LFO Mod PW',
+            'Level'
+        ]
+
+        // this.oscillatorValuesV2 = [
+        //     'OscillatorToggle',
+        //     'OscillatorWaveShape',
+        //     'OscillatorOct',
+        //     'OscillatorOctRelativePosition',
+        //     'OscillatorSemi',
+        //     'OscillatorSemiRelativePosition',
+        //     'OscillatorMode',
+        //     'OscillatorEnvTime',
+        //     'OscillatorDetune',
+        //     'OscillatorModulation1',
+        //     'OscillatorPulseWidth',
+        //     'OscillatorSubAmount',
+        //     'OscillatorBalance',
+        //     'OscillatorEnvAmount',
+        //     'OscillatorLFOModPW',
+        //     'OscillatorLevel'
+        // ]
     }
 
     prepareData() {
-        let signalChain01 = [
-            this.props.osc1.OscBalance,
-            this.props.osc1.OscDetune,
-            this.props.osc1.OscEnvAmount,
-            this.props.osc1.OscEnvTime,
-            this.props.osc1.OscLFOModPW,
-            this.props.osc1.OscLFOModPitch,
-            this.props.osc1.OscLevel,
-            this.props.osc1.OscModulation,
-            this.props.osc1.OscOctave,
-            this.props.osc1.OscPulseWidth,
-            this.props.osc1.OscSemi,
-            this.props.osc1.OscSubAmount,
-            this.handleBool(this.props.osc1.OscToggle),
-            this.props.osc1.OscWaveshape,
-        ];
-        
-        let signalChain02 = [
-            this.props.osc2.OscBalance,
-            this.props.osc2.OscDetune,
-            this.props.osc2.OscEnvAmount,
-            this.props.osc2.OscEnvTime,
-            this.props.osc2.OscLFOModPW,
-            this.props.osc2.OscLFOModPitch,
-            this.props.osc2.OscLevel,
-            this.props.osc2.OscModulation,
-            this.props.osc2.OscOctave,
-            this.props.osc2.OscPulseWidth,
-            this.props.osc2.OscSemi,
-            this.props.osc2.OscSubAmount,
-            this.handleBool(this.props.osc2.OscToggle),
-            this.props.osc2.OscWaveshape,
-        ];
 
-        return [signalChain01, signalChain02];
+        let signalChain1 = [];
+        let signalChain2 = [];
+
+        this.oscillatorValuesV2.map((x) => {
+            signalChain1.push(this.props.osc1[x]);
+        });
+
+        this.oscillatorValuesV2.map((x) => {
+            signalChain2.push(this.props.osc2[x]);
+        });
+        
+        let myData = [signalChain1, signalChain2]
+        return myData;
     }
 
     // This is to handle preset values which are represented by either a true or false.
@@ -106,7 +121,7 @@ class OscillatorChart extends Component {
         let myData = this.prepareData();
 
         let graphData = {
-            labels: this.oscilatorValues,
+            labels: this.labels,
             datasets: [
                 {
                     label: 'Signal Chain 01',

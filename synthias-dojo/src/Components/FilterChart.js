@@ -49,32 +49,44 @@ class FilterChart extends Component {
             'Type'
         ]
 
+        this.filterValuesV2 = [
+            'FilterCutoffFrequency',
+            'FilterDrive',
+            'FilterEnvQMod',
+            'FilterKbdCutoffMod',
+            'FilterKbdQMod',
+            'FilterLFOCutoffMod',
+            'FilterLFOQMod',
+            'FilterToggle',
+            'FilterType'
+        ];
+
+        this.labels = [
+            'Cuttoff',
+            'Drive',
+            'Env Q Mod',
+            'Kbd CutoffMod',
+            'Kbd Q Mod',
+            'LFO Cutoff',
+            'LFO Q Mod',
+            'Toggle',
+            'Type'
+        ];
+
     }
 
     prepareData() {
-        let signalChain01 = [
-            this.props.osc1.FilterCutoffFreq,
-            this.props.osc1.FilterCutoffMod,
-            this.props.osc1.FilterDrive,
-            this.props.osc1.FilterEnvCuttoffMod,
-            this.props.osc1.FilterKbdMod,
-            this.props.osc1.FilterLFOCuttoffMod,
-            this.props.osc1.FilterQFactor,
-            this.handleBool(this.props.osc1.FilterToggle),
-            this.props.osc1.FilterType
-        ]
+        
+        let signalChain01 = [];
+        let signalChain02 = [];
 
-        let signalChain02 = [
-            this.props.osc2.FilterCutoffFreq,
-            this.props.osc2.FilterCutoffMod,
-            this.props.osc2.FilterDrive,
-            this.props.osc2.FilterEnvCuttoffMod,
-            this.props.osc2.FilterKbdMod,
-            this.props.osc2.FilterLFOCuttoffMod,
-            this.props.osc2.FilterQFactor,
-            this.handleBool(this.props.osc2.FilterToggle),
-            this.props.osc2.FilterType
-        ]
+        this.filterValuesV2.map((x) => {
+            signalChain01.push(this.props.osc1[x]);
+        });
+
+        this.filterValuesV2.map((x) => {
+            signalChain02.push(this.props.osc2[x]);
+        });
 
         return [signalChain01, signalChain02];
     }
@@ -91,7 +103,7 @@ class FilterChart extends Component {
         let myData = this.prepareData();
 
         let graphData = {
-            labels: this.filterValues,
+            labels: this.labels,
             datasets: [
                 {
                     label: 'Signal Chain 01',

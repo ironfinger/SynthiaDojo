@@ -41,7 +41,7 @@ class Train extends Component {
     componentDidMount() {
         fetch('/api/find-new-data').then(res => res.json()).then(data => {
             console.log(data.presets);
-            this.setState({newPresets: data.presets});
+            this.setState({newPresets: data});
         });
     }
 

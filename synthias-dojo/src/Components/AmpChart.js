@@ -38,42 +38,46 @@ class AmpChart extends Component {
             secondary: 'rgba(137, 72, 219, 0.7)'
         }
 
-        this.ampValues = [
-            'Kbd Mod',
+        this.ampValuesV2 = [
+            'AmplifierEnvPanMod',
+            'AmplifierKbdAmpMod',
+            'AmplifierKbdPanMod',
+            'AmplifierLFOAmpMod',
+            'AmplifierLFOPanMod',
+            'AmplifierLevel',
+            'AmplifierPan',
+            'AmplifierToggle'
+        ];
+
+        this.labels = [
+            'Pan Mod',
+            'Kbd Amp Mod',
             'Kbd Pan Mod',
-            'LFO Mod',
+            'Lfo Amp Mod',
+            'Lfo Pan Mod',
             'Level',
             'Pan',
-            'Pan Mod',
             'Toggle'
-        ]
+        ];
 
         // 7
 
     }
 
     prepareData() {
-        let signalChain01 = [
-            this.props.osc1.ampKbdMod,
-            this.props.osc1.ampKbdPanMod,
-            this.props.osc1.ampLFOMod,
-            this.props.osc1.ampLevel,
-            this.props.osc1.ampPan,
-            this.props.osc1.ampPanMod,
-            this.handleBool(this.props.osc1.ampToggle)
-        ]
+        
+        let signalChain1 = [];
+        let signalChain2 = [];
 
-        let signalChain02 = [
-            this.props.osc2.ampKbdMod,
-            this.props.osc2.ampKbdPanMod,
-            this.props.osc2.ampLFOMod,
-            this.props.osc2.ampLevel,
-            this.props.osc2.ampPan,
-            this.props.osc2.ampPanMod,
-            this.handleBool(this.props.osc2.ampToggle)
-        ]
+        this.ampValuesV2.map((x) => {
+            signalChain1.push(this.props.osc1[x]);
+        });
 
-        return [signalChain01, signalChain02];
+        this.ampValuesV2.map((x) => {
+            signalChain2.push(this.props.osc2[x]);
+        });
+
+        return [signalChain1, signalChain2];
     }
 
     handleBool(arg) {
@@ -89,7 +93,7 @@ class AmpChart extends Component {
         let myData = this.prepareData();
 
         let graphData = {
-            labels: this.ampValues,
+            labels: this.labels,
             datasets: [
                 {
                     label: 'Signal Chain 01',

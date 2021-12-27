@@ -49,34 +49,43 @@ class LfoChart extends Component {
             'sync',
             'sync toggle'
         ];
+
+        this.lfoValuesV2 = [
+            'LFODelay',
+            'LFOFadeIn',
+            'LFOGateReset',
+            'LFOPhase',
+            'LFOPulseWidth',
+            'LFOSpeed',
+            'LFOSync',
+            'LFOSyncToggle',
+            'LFOToggle'
+        ];
+
+        this.labels = [
+            'Delay',
+            'Fade In',
+            'Gate Reset',
+            'Phase',
+            'PulseWidth',
+            'Speed',
+            'Sync',
+            'Sync Toggle',
+            'Toggle'
+        ]
     }
 
     prepareData() {
-        let signalChain01 = [
-            this.props.osc1.lfoDelay,
-            this.props.osc1.lfoFadeIn,
-            this.handleBool(this.props.osc1.lfoGateReset),
-            this.props.osc1.lfoPhase,
-            this.props.osc1.lfoPulseWidth,
-            this.props.osc1.lfoSpeed,
-            this.handleBool(this.props.osc1.lfoToggle),
-            this.props.osc1.lfoWaveshape,
-            this.props.osc1.lfosync / 10,
-            this.props.osc1.lfosyncToggle
-        ]
+        let signalChain01 = [];
+        let signalChain02 = [];
+        
+        this.lfoValuesV2.map((x) => {
+            signalChain01.push(this.props.osc1[x]);
+        });
 
-        let signalChain02 = [
-            this.props.osc2.lfoDelay,
-            this.props.osc2.lfoFadeIn,
-            this.handleBool(this.props.osc2.lfoGateReset),
-            this.props.osc2.lfoPhase,
-            this.props.osc2.lfoPulseWidth,
-            this.props.osc2.lfoSpeed,
-            this.handleBool(this.props.osc2.lfoToggle),
-            this.props.osc2.lfoWaveshape,
-            this.props.osc2.lfosync / 10,
-            this.props.osc2.lfosyncToggle
-        ]
+        this.lfoValuesV2.map((x) => {
+            signalChain02.push(this.props.osc2[x]);
+        });
 
         return [signalChain01, signalChain02]
     }
@@ -95,7 +104,7 @@ class LfoChart extends Component {
         let myData = this.prepareData();
 
         let graphData = {
-            labels: this.lfoValues,
+            labels: this.labels,
             datasets: [
                 {
                     label: 'Signal Chain 01',
