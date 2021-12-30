@@ -5,6 +5,7 @@ import '../App.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/esm/Container';
+import Button from 'react-bootstrap/Button';
 
 // Import my components:
 import DescriptorPreview from '../Components/DescriptorPreview'; // This is to show the consistency brightness ect of each preset.
@@ -49,6 +50,9 @@ class Library extends Component {
 
         this.displayPresets = () => {
             return this.state.presets.map((x, i) => {
+                if (i === this.state.currentPreset) {
+                    return <li className="preset-selected" onClick={() => { this.listClick(i)}}>{x.name}</li>
+                }
                 return <li className="preset-selector" onClick={() => { this.listClick(i)}}>{x.name}</li>
             })
         }
@@ -153,7 +157,7 @@ class Library extends Component {
             <Container fluid className="library">
                 <Row>
                     <Col lg={4}>
-                        <div className="card-top">
+                        <div className="card-top" id="preset-selector">
                             <ul>
                                 { this.displayPresets() }
                             </ul>
@@ -162,7 +166,7 @@ class Library extends Component {
                     <Col lg={8}>
                         <div className="card-top" id="top-card">
                             <Row>
-                            <Col md={3} lg={5}>
+                            <Col md={3} lg={7}>
                                 {this.displayChart()}
 
                             </Col>
@@ -175,13 +179,25 @@ class Library extends Component {
                 </Row>
                 <Row>
                     <Col lg={4}>
-                        <div className="card-bottom">
-                            <h1>Hello</h1>
+                        <div className="card-bottom" id="feature-select-card">
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(0)}>Oscillator</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(1)}>Amp</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(2)}>Env 01</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(3)}>Env 02</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(4)}>Filter</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(5)}>LFO</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(6)}>Globals</Button>
+                            <Button className="graph-select-btn" onClick={() => this.featureSelect(7)}>Json</Button>
                         </div>
                     </Col>
                     <Col lg={8}>
                         <div className="card-bottom">
-
+                            <DescriptorPreview
+                                consistency={this.state.presets[this.state.currentPreset].descriptors.consistency}
+                                dynamics={this.state.presets[this.state.currentPreset].descriptors.dynamics}
+                                evolution={this.state.presets[this.state.currentPreset].descriptors.evolution}
+                                brightness={this.state.presets[this.state.currentPreset].descriptors.brightness}
+                            />
                         </div>
                     </Col>
                 </Row>

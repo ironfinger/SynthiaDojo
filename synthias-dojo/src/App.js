@@ -38,7 +38,7 @@ class App extends Component {
 
 const Navigation = () => {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" className="my-nav">
       <Container>
       <Navbar.Brand href="#home">
         SynthiaDojo: Library

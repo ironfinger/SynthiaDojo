@@ -82,18 +82,6 @@ code {
   overflow: visible;
 }
 
-.preset-selector {
-  transition: 1s;
-  border-radius: 6px;
-  margin-top: 5px;
-}
-
-.preset-selector:hover {
-  background-color: #2E434A;
-  
-  color: white;
-}
-
 .preset-value {
   width: 15em;
   padding: 3px;
@@ -203,6 +191,10 @@ code {
   --main-primary-color: #67B6CE;
 }
 
+.my-nav {
+  background-color: #3E3E3E !important;
+}
+
 .library {
   color: white;
 }
@@ -213,17 +205,16 @@ code {
 .card-top {
   background-color: var(--main-card-color);
   margin: 10px;
-  height: 60vh;
+  height: 70vh;
   border-radius: 17px;
 }
 
 .card-bottom {
   background-color: var(--main-card-color);
   margin: 10px;
-  height: 30vh;
+  height: 20vh;
   border-radius: 17px;
 }
-
 
 .card-right {
   background-color: var(--main-card-color);
@@ -231,7 +222,43 @@ code {
   height: 60vh;
 }
 
+.preset-selector {
+  transition: 0.5s;
+  border-radius: 6px;
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.preset-selector:hover {
+  background-color: var(--main-primary-color);
+  
+  color: white;
+}
+
+.preset-selected {
+  transition: 0.5s;
+  background-color: var(--main-primary-color);
+  font-size: 20px;
+  border-radius: 6px;
+  padding: 2px;
+}
+
 .LibraryChart {
   margin: 10px;
   height: 50%;
+}
+
+#preset-selector {
+  padding-top: 20px;
+  padding-right: 40px;
+}
+
+#feature-select-card {
+  padding: 5px;
+}
+
+.graph-select-btn {
+  background-color: var(--main-primary-color) !important;
+  border-color: var(--main-primary-color) !important;
+  margin: 5px;
 }

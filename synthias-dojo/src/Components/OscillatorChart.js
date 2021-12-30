@@ -164,6 +164,10 @@ class OscillatorChart extends Component {
                             }
                             
                         },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        aspectRatio: 1,
+                        color: '#ffffff',
                         elements: {
                             line: {
                                 tension: 0.5,

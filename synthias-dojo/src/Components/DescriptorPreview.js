@@ -14,7 +14,7 @@ import Chart from './Chart';
 class DescriptorPreview extends Component {
     constructor (props) {
         super (props);
-        this.colors = [['#A8FFCA', '#99C1D3']];
+        this.colors = [['#67B6CE', '#262626']];
 
         // We need to calculate the 'total' on the pie chart so that the total is always 100.
     }
