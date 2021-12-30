@@ -8,7 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Roboto', sans-serif;
-  background-color: #99C1D3;
+  background-color: #262626;
 }
 
 code {
@@ -20,8 +20,8 @@ code {
   height: 100%;
   width: 100%;
   font-weight: 300;
-  font-size: 30px;
-  color: #393939;
+  font-size: 18px;
+  color: #ffffff;
 }
 
 .main ul {
@@ -30,8 +30,7 @@ code {
 
 .top {
   width: 100%;
-  height: 60vh;
-  background-color: #99C1D3;
+  height: 70vh;
 }
 
 .top-left {
@@ -41,8 +40,7 @@ code {
 
 .bottom {
   width: 100%;
-  height: 40vh;
-  background-color: #546164;
+  height: 30vh;
 }
 
 .chartCont {
@@ -182,11 +180,18 @@ code {
 .FeatureSelector li {
   float: left;
   font-size: 20px;
-  margin-left: 10px;
   text-align: center;
-  margin-top: 10px;
   background-color: #3c5766;
   border-radius: 6px;
   padding: 5px;
   color: #99C1D3;
+}
+
+.LibraryChart {
+  background-color: rgb(166, 200, 207);
+  padding: 10px;
+  border-radius: 12px;
+  width: 55%;
+  height: auto;
+  margin: 10px;
 }

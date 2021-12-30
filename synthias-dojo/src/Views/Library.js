@@ -31,6 +31,36 @@ class Library extends Component {
             currentPreset: 0,
             chartSelector: 0
         };
+
+        this.graphSelectComp = () => {
+            return (
+                <ul className="FeatureSelector">
+                    <li onClick={() => this.featureSelect(0)}>Oscillator</li>
+                    <li onClick={() => this.featureSelect(1)}>Amp</li>
+                    <li onClick={() => this.featureSelect(2)}>Env 01</li>
+                    <li onClick={() => this.featureSelect(3)}>Env 02</li>
+                    <li onClick={() => this.featureSelect(4)}>Filter</li>
+                    <li onClick={() => this.featureSelect(5)}>LFO</li>
+                    <li onClick={() => this.featureSelect(6)}>Globals</li>
+                    <li onClick={() => this.featureSelect(7)}>Json</li>
+                </ul>
+            )
+        }
+
+        this.displayPresets = () => {
+            this.state.presets.map((x, i) => {
+                return <li className="preset-selector" onClick={() => { this.listClick(i)}}>{x.name}</li>
+            })
+        }
+
+        this.descriptorComp = () => {
+            <DescriptorPreview
+                consistency={this.state.presets[this.state.currentPreset].descriptors.consistency}
+                dynamics={this.state.presets[this.state.currentPreset].descriptors.dynamics}
+                evolution={this.state.presets[this.state.currentPreset].descriptors.evolution}
+                brightness={this.state.presets[this.state.currentPreset].descriptors.brightness}
+            />
+        }
     }
 
     componentDidMount() { // This is called once the component is loaded into the DOM.
@@ -84,11 +114,14 @@ class Library extends Component {
         return (
            <div class="main">
                <div class="top">
-                    <Container>
-                    <h1>{this.state.presets[this.state.currentPreset].name}</h1>
-                        <Row>
-                            <Col>
-                                <div className="top-left">
+                    <Row>
+                        <Col xs={4}>
+                            <div style={{
+                                backgroundColor: '#ff0000',
+                                margin: '10px',
+                                height: '70%'
+                                
+                                }}>
                                     <ul>
                                         {
                                             this.state.presets.map((x, i) => {
@@ -96,38 +129,26 @@ class Library extends Component {
                                             })
                                         }
                                     </ul>
-                                </div>
-                            </Col>
-                            <Col>
-                                <Row>
-                                    <Row>
-                                        <ul className="FeatureSelector">
-                                            <li onClick={() => this.featureSelect(0)}>Oscillator</li>
-                                            <li onClick={() => this.featureSelect(1)}>Amp</li>
-                                            <li onClick={() => this.featureSelect(2)}>Env 01</li>
-                                            <li onClick={() => this.featureSelect(3)}>Env 02</li>
-                                            <li onClick={() => this.featureSelect(4)}>Filter</li>
-                                            <li onClick={() => this.featureSelect(5)}>LFO</li>
-                                            <li onClick={() => this.featureSelect(6)}>Globals</li>
-                                            <li onClick={() => this.featureSelect(7)}>Json</li>
-                                        </ul>
-                                    </Row>
-                                    {/* We need a component to show the graph */}
-                                    <div>
-                                        { this.displayChart() }
-                                    </div>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Container>
+                            </div>
+                        </Col>
+                        <Col xs={8}>
+                            {
+                                this.displayChart()
+                            }
+                        </Col>
+                    </Row>
                </div>
                <div class="bottom">
-                    <DescriptorPreview
-                        consistency={this.state.presets[this.state.currentPreset].descriptors.consistency}
-                        dynamics={this.state.presets[this.state.currentPreset].descriptors.dynamics}
-                        evolution={this.state.presets[this.state.currentPreset].descriptors.evolution}
-                        brightness={this.state.presets[this.state.currentPreset].descriptors.brightness}
-                    />
+                    <Row>
+                        <Col xs={4}>
+                            <DescriptorPreview
+                                consistency={this.state.presets[this.state.currentPreset].descriptors.consistency}
+                                dynamics={this.state.presets[this.state.currentPreset].descriptors.dynamics}
+                                evolution={this.state.presets[this.state.currentPreset].descriptors.evolution}
+                                brightness={this.state.presets[this.state.currentPreset].descriptors.brightness}
+                            />
+                        </Col>
+                    </Row>
                </div>
            </div> 
         )
