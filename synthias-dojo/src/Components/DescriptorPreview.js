@@ -27,7 +27,7 @@ class DescriptorPreview extends Component {
         this.consistencyTotal = 100 - this.props.consistency;
 
         return (
-            <Container style={{ backgroundColor: '#ff0000', margin: '10px', marginBottom: '50px'}}>
+            <Container>
                 <Row>
                     <Col xs={3} className='d-flex justify-content-center'>
                         <div className='descriptorChart'>

@@ -48,7 +48,7 @@ class Library extends Component {
         }
 
         this.displayPresets = () => {
-            this.state.presets.map((x, i) => {
+            return this.state.presets.map((x, i) => {
                 return <li className="preset-selector" onClick={() => { this.listClick(i)}}>{x.name}</li>
             })
         }
@@ -109,48 +109,83 @@ class Library extends Component {
         this.setState({ chartSelector: arg });
     }
 
-    render() {
+    NOnrender() {
         console.log(this.state.presets[this.state.currentPreset].descriptors);
         return (
            <div class="main">
-               <div class="top">
-                    <Row>
-                        <Col xs={4}>
-                            <div style={{
-                                backgroundColor: '#ff0000',
-                                margin: '10px',
-                                height: '70%'
-                                
-                                }}>
+                <Row>
+                    <div class="top">
+                        <Row>
+                            <Col lg={4}>
+                                <div className="card-left" id="top-card">
                                     <ul>
-                                        {
-                                            this.state.presets.map((x, i) => {
-                                                return <li className="preset-selector" onClick={() => { this.listClick(i)}}>{x.name}</li>
-                                            })
-                                        }
+                                        { this.displayPresets() }
                                     </ul>
-                            </div>
-                        </Col>
-                        <Col xs={8}>
-                            {
-                                this.displayChart()
-                            }
-                        </Col>
-                    </Row>
-               </div>
-               <div class="bottom">
-                    <Row>
-                        <Col xs={4}>
-                            <DescriptorPreview
-                                consistency={this.state.presets[this.state.currentPreset].descriptors.consistency}
-                                dynamics={this.state.presets[this.state.currentPreset].descriptors.dynamics}
-                                evolution={this.state.presets[this.state.currentPreset].descriptors.evolution}
-                                brightness={this.state.presets[this.state.currentPreset].descriptors.brightness}
-                            />
-                        </Col>
-                    </Row>
-               </div>
+                                </div>
+                            </Col>
+                            <Col lg={8}>
+                                <div className="card-right" id="top-card">
+
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
+
+                    
+                </Row>
+                <Row>
+                    <div class="bottom">
+                            <Row>
+                                <Col lg={4}>
+                                    <div className="card-left-bottom">
+                                        <h1>Hello</h1>
+                                    </div>
+                                </Col>
+                            </Row>
+                    </div>
+                </Row>
            </div> 
+        )
+    }
+
+    render() {
+        return (
+            <Container fluid className="library">
+                <Row>
+                    <Col lg={4}>
+                        <div className="card-top">
+                            <ul>
+                                { this.displayPresets() }
+                            </ul>
+                        </div>
+                    </Col>
+                    <Col lg={8}>
+                        <div className="card-top" id="top-card">
+                            <Row>
+                            <Col md={3} lg={5}>
+                                {this.displayChart()}
+
+                            </Col>
+                            <Col lg={2}>
+                                <h1>Hello</h1>
+                            </Col>
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col lg={4}>
+                        <div className="card-bottom">
+                            <h1>Hello</h1>
+                        </div>
+                    </Col>
+                    <Col lg={8}>
+                        <div className="card-bottom">
+
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
